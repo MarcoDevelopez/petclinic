@@ -1,0 +1,27 @@
+<section id="veterinarians" class="sections sections-narrow">
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-8 col-md-offset-2">
+	      <div class="text-center">
+	        <h3>Our Veterinarians</h3>
+	        <p class="section-desc">We provide the best medical expertise and care for your fur kids!</p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div *ngFor="let vet of vets; let i=index" class="col-md-3">
+	      <div class="thumbnail" *ngIf="i<12">
+	        <img src="assets/images/vets/vet{{vet.id}}.jpg" alt="Generic placeholder image" class="img-circle"/>
+	        <div class="caption">
+	          <h3 class="caption-heading">
+              Dr. {{vet.firstName}} {{vet.lastName}}
+            </h3>
+	          <p>
+              {{vet.description}}
+            </p>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</section>
