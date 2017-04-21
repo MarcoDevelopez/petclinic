@@ -1,28 +1,23 @@
 # Petclinic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+Este es un proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) (npm install -g @angular/cli). Basando en el ejemplo [Spring PetClinic Sample Application](https://github.com/singularity-sg/spring-petclinic) basdo en Spring PetClinic con AngularJS.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Proyecto desarrollado con:
+Spring Boot
+Eclipse JPA
+Oracle 11g
+Angular 2
+Spring Tool Suite
+Apache Tomcat 7
 
-## Code scaffolding
+## Para Ejecutarlo:
+1. Descargar el proyecto desde el .git
+2. Ejecutar los scripts de la carpeta "petclinic/src/main/resources/scripts/".
+3. Importar a STS usando Maven
+4. Cuando se haga el "Clean and Build", tambien se construirá los archivos de Angular 2.
+5. Ejecutar como Servidor, con Apache Tomcat 7.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Para consultas:
+Twitter: https://www.twitter.com/MarcoDevelopez
