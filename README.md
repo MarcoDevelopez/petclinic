@@ -1,6 +1,7 @@
 # Petclinic
 
-Este es un proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) (npm install -g @angular/cli). Basando en el ejemplo [Spring PetClinic Sample Application](https://github.com/singularity-sg/spring-petclinic) basdo en Spring PetClinic con AngularJS.
+Este es un proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) (npm install -g @angular/cli).
+Basado en el ejemplo [Spring PetClinic Sample Application](https://github.com/singularity-sg/spring-petclinic) basdo en Spring PetClinic con AngularJS.
 
 ## Development server
 
