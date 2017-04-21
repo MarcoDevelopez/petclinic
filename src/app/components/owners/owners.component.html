@@ -2,6 +2,9 @@
 <section id="owners" class="sections sections-narrow">
   <div class="container">
     <div class="action-items pull-right">
+      <button type="button" class="btn btn-primary pull-right action-item" data-toggle="modal" data-target="#addOwnerModal" (click)="onAddOwner()">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New Owner
+      </button>
       <div class="action-item pull-right">
         View as
         <div class="btn-group">
@@ -32,3 +35,127 @@
     </div>
   </div>
 </section>
+
+<!-- Add Owner Modal -->
+<div class="modal modal-owner fade" id="addOwnerModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h1 class="sub-header">Add An Owner</h1>
+              <em class="text-muted">Fill up pet owners basic information and contact details</em>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form #ownerForm="ngForm">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-md-offset-2">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="owner.firstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="owner.lastName" required>
+                </div>
+                <div class="form-group">
+                  <label for="profileImg">Profile Photo</label>
+                  <input type="file" class="form-control-file" id="profileImg">
+                </div>
+                <div class="form-group">
+                  <label for="occupation">Occupation</label>
+                  <input type="text" class="form-control" id="occupation" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <input type="text" class="form-control" id="company" readonly>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="birthDate">Birth Date</label>
+                  <input type="text" class="form-control" id="birthDate" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input type="text" class="form-control" id="address" name="address" [(ngModel)]="owner.address">
+                </div>
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="city" name="city" [(ngModel)]="owner.city">
+                </div>
+                <div class="form-group">
+                  <label for="contactNumber">Contact Number</label>
+                  <input type="text" class="form-control" id="contactNumber" name="contactNumber" [(ngModel)]="owner.telephone">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" id="email" readonly>
+                </div>
+              </div>
+              <div class="col-md-8 col-md-offset-2">
+                <div class="form-group form-group-action">
+                  <button type="submit" 
+                          class="btn btn-primary" 
+                          data-toggle="modal" 
+                          data-target="#addOwnerSuccessModal" 
+                          data-dismiss="modal" 
+                          aria-label="Close" 
+                          (click)="onSaveOwner()"
+                          [disabled]="!ownerForm.form.valid">
+                    Save Owner
+                  </button>
+                  <button type="button"
+                          class="btn btn-link" 
+                          data-dismiss="modal" 
+                          aria-label="Close">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Owner Success Modal -->
+<div class="modal modal-owner fade" id="addOwnerSuccessModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h1 class="sub-header">Owner added successfully!</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="alert alert-success" role="alert">
+                Well done! You've successfully added an a new owner.
+              </div>
+              <div class="form-group form-group-action">
+                <!-- ##TODO: Should link to the proper owner details page -->
+                <a [routerLink]="['/owners/'+owner.id]" class="btn btn-primary">View owner's details</a>
+                <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
