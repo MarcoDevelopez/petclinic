@@ -2,6 +2,7 @@ package com.debugeando.examples.petclinic.model;
 
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "authorities")
+@Cacheable(false)
 public class Authority extends BaseEntity {
 
 	@Column

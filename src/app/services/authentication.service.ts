@@ -12,6 +12,20 @@ export class AuthenticationService {
     private http:Http,
     private appConfig:AppConfig) { }
 
+  createAuthorizationTokenHeader(headers: Headers) {
+    var token = localStorage.getItem("jwtToken");
+    if(token) {
+      headers.append('Authorization', token);
+    }
+  }
+
+  getUserAuth() {
+    let url = this.appConfig.contextPath + "/api/user";
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
+  }
+
   login(username: string, password: string) {
     this.isLoggedin = false;
 

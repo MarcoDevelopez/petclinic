@@ -3,6 +3,9 @@ package com.debugeando.examples.petclinic.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,21 +22,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "users")
+@AttributeOverrides({
+	@AttributeOverride(name = "firstName", column = @Column(name = "firstname")),
+	@AttributeOverride(name = "lastName", column = @Column(name = "lastname"))
+})
+@Cacheable(false)
 public class User extends Person {
 
-	@Column
+	@Column(name = "username")
 	private String username;
 	
-	@Column
+	@Column(name = "password")
 	private String password;
 	
-	@Column
+	@Column(name = "email")
 	private String email;
 	
-	@Column
+	@Column(name = "enabled")
 	private Boolean enabled;
 	
-	@Column
+	@Column(name = "lastpasswordresetdate")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -94,5 +102,14 @@ public class User extends Person {
 	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", email="
+				+ email + ", enabled=" + enabled + ", lastPasswordResetDate="
+				+ lastPasswordResetDate + ", authorities=" + authorities
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
 	
 }
