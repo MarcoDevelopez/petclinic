@@ -1,7 +1,9 @@
+<app-template>
+
 <!-- Welcome -->
 <div class="jumbotron jumbotron-welcome">
   <div class="container">
-    <header data-ng-if="getSession() == null">
+    <header *ngIf="!isLoggedIn">
       <a class="navbar-brand navbar-brand-nopadding pull-left" [routerLink]="['/']">
         <img alt="Pet Clinic Brand" height="27" width="auto" src="assets/images/logo-brand.png">
       </a>
@@ -245,3 +247,5 @@
     </div>
   </div>
 </section>
+
+</app-template>

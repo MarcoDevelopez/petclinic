@@ -19,6 +19,7 @@ import { VetsComponent } from './components/vets/vets.component';
 import { OwnerDetailsComponent } from './components/owner-details/owner-details.component';
 import { LoginComponent } from './components/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { TemplateComponent } from './components/template/template.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     VetsComponent,
     OwnerDetailsComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,

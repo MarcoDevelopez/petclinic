@@ -9,26 +9,22 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated: boolean;
-
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router) {
    }
 
   ngOnInit() {
-    let val = this.authenticationService.isAuthenticated();
-    if(val) {
-      this.isAuthenticated = val;
-    } else {
-      this.logout();
-    }
+    
   }
-
-  logout(): void {
-    this.authenticationService.logout();
-    this.isAuthenticated = false;
-    this.router.navigateByUrl('/');
+ 
+  public get isLoggedIn() : boolean {
+    return this.authService.isLoggedin;
+  }
+  
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from "app/services/authentication.service";
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
+  }
+
+  public get isLoggedIn() : boolean {
+    return this.authService.isLoggedin;
   }
 
 }

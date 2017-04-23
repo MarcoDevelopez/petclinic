@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" *ngIf="isAuthenticated">
+<nav class="navbar navbar-default navbar-static-top" *ngIf="isLoggedIn">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -49,7 +49,7 @@
           <li><a href="#">Settings</a></li>
           <li><a href="#">Help</a></li>
           <li class="divider"></li>
-          <li><a href="login">Sign Out</a></li>
+          <li><a (click)="logout()" style="cursor: pointer;">Sign Out</a></li>
         </ul>
       </li>
     </ul>

@@ -15,7 +15,7 @@ export class PetclinicService {
     private appConfig:AppConfig) { }
 
   createAuthorizationTokenHeader(headers: Headers) {
-    var token = this.appConfig.getJwtToken();
+    var token = localStorage.getItem("jwtToken");
     if(token) {
       headers.append('Authorization', token);
     }

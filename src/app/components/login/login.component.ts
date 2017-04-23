@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "app/services/authentication.service";
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,8 +14,6 @@ export class LoginComponent implements OnInit {
 
   returnUrl: string;
 
-  isAuthenticated: boolean;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,17 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
-  }
-
-  logout() {
-    let val = this.authenticationService.isAuthenticated();
-    if(val) {
-      this.authenticationService.logout();
-      this.router.navigateByUrl('/');
-    } 
-    
   }
 
   login() {
