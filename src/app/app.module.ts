@@ -4,7 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AppConfig } from "app/app.config";
 import { PetclinicService } from "app/services/petclinic.service";
+import { AuthenticationService } from "app/services/authentication.service";
+import { AuthGuardService } from "app/services/auth.guard.service";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -14,13 +17,20 @@ import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { VetsComponent } from './components/vets/vets.component';
 import { OwnerDetailsComponent } from './components/owner-details/owner-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'owners', component: OwnersComponent },
-  { path: 'owners/:id', component: OwnerDetailsComponent },
-  { path: 'pets', component: PetsComponent },
-  { path: 'vets', component: VetsComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LandingComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'owners', component: OwnersComponent, canActivate: [AuthGuardService] },
+  { path: 'owners/:id', component: OwnerDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'pets', component: PetsComponent, canActivate: [AuthGuardService] },
+  { path: 'vets', component: VetsComponent, canActivate: [AuthGuardService] },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({
@@ -32,7 +42,9 @@ const appRoutes: Routes = [
     OwnersComponent,
     PetsComponent,
     VetsComponent,
-    OwnerDetailsComponent
+    OwnerDetailsComponent,
+    LoginComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +53,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PetclinicService],
+  providers: [PetclinicService, AuthenticationService, AuthGuardService, AppConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

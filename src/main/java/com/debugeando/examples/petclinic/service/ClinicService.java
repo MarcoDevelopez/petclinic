@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.debugeando.examples.petclinic.model.Owner;
 import com.debugeando.examples.petclinic.model.Pet;
 import com.debugeando.examples.petclinic.model.PetType;
+import com.debugeando.examples.petclinic.model.User;
 import com.debugeando.examples.petclinic.model.Vet;
 import com.debugeando.examples.petclinic.model.Visit;
 
@@ -16,6 +17,10 @@ import com.debugeando.examples.petclinic.model.Visit;
  * @author Marco Lopez
  */
 public interface ClinicService {
+	
+	// Users
+	
+	User findByUsername(String username) throws DataAccessException;
 
 	// Owners
 	

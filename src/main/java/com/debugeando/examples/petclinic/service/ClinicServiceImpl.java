@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.debugeando.examples.petclinic.model.Owner;
 import com.debugeando.examples.petclinic.model.Pet;
 import com.debugeando.examples.petclinic.model.PetType;
+import com.debugeando.examples.petclinic.model.User;
 import com.debugeando.examples.petclinic.model.Vet;
 import com.debugeando.examples.petclinic.model.Visit;
 import com.debugeando.examples.petclinic.repository.OwnerRepository;
 import com.debugeando.examples.petclinic.repository.PetRepository;
+import com.debugeando.examples.petclinic.repository.UserRepository;
 import com.debugeando.examples.petclinic.repository.VetRepository;
 import com.debugeando.examples.petclinic.repository.VisitRepository;
 
@@ -30,16 +32,19 @@ public class ClinicServiceImpl implements ClinicService {
 	private PetRepository petRepository;
 	private VisitRepository visitRepository;
 	private VetRepository vetRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
 	public ClinicServiceImpl(OwnerRepository ownerRepository, 
 													 PetRepository petRepository, 
 													 VisitRepository visitRepository,
-													 VetRepository vetRepository) {
+													 VetRepository vetRepository,
+													 UserRepository userRepository) {
 		this.ownerRepository = ownerRepository;
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.vetRepository = vetRepository;
+		this.userRepository = userRepository;
 	}
 
 	public void setOwnerRepository(OwnerRepository ownerRepository) {
@@ -107,6 +112,11 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	public List<Vet> findVets() throws DataAccessException {
 		return vetRepository.findAll();
+	}
+
+	@Override
+	public User findByUsername(String username) throws DataAccessException {
+		return userRepository.findByUsername(username);
 	}
 
 }

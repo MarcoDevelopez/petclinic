@@ -2,54 +2,72 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { AppConfig } from "app/app.config";
 import { Owner } from "../owner";
 import { Pet } from "../pet";
+
 
 @Injectable()
 export class PetclinicService {
 
-  private ownersUrl: string;
-  private petsUrl: string;
-  private vetsUrl: string;
-  private urlAPI: string = "http://localhost:8082/petclinic/api";
+  constructor(
+    private http:Http,
+    private appConfig:AppConfig) { }
 
-  constructor(private http:Http) { }
+  createAuthorizationTokenHeader(headers: Headers) {
+    var token = this.appConfig.getJwtToken();
+    if(token) {
+      headers.append('Authorization', token);
+    }
+  }
 
   getOwners() {
-    this.ownersUrl = "http://localhost:8082/petclinic/api/owners"; 
-    return this.http.get(this.ownersUrl).map(res => res.json());
+    let url = this.appConfig.contextPath + "/api/owners"; 
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
   }
 
   getOwner(id: number) {
-    const ownerUrl = "http://localhost:8082/petclinic/api/owners/"+id;
-    return this.http.get(ownerUrl).map(res => res.json());
+    let url = this.appConfig.contextPath + "/api/owners/"+id;
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
   }
 
   saveOwner(owner: Owner) {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const url = "http://localhost:8082/petclinic/api/owners";
+    let url = this.appConfig.contextPath + "/api/owners";
+    let headers = new Headers({'Content-Type': 'application/json'});
+    this.createAuthorizationTokenHeader(headers);
     return this.http.post(url, JSON.stringify(owner), {headers: headers}).map(res => res.json());
   }
 
   getPets() {
-    this.petsUrl = "http://localhost:8082/petclinic/api/pets";
-    return this.http.get(this.petsUrl).map(res => res.json());
+    let url = this.appConfig.contextPath + "/api/pets";
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
   }
 
   savePet(ownerId: number, pet: Pet) {
-    var url = this.urlAPI + "/owners/" + ownerId + "/pets";
-    var headers = new Headers({'Content-Type': 'application/json'});
+    let url = this.appConfig.contextPath + "/api/owners/" + ownerId + "/pets";
+    let headers = new Headers({'Content-Type': 'application/json'});
+    this.createAuthorizationTokenHeader(headers);
     return this.http.post(url, JSON.stringify(pet), {headers: headers}).map(res => res.json());
   }
 
   getPetTypes() {
-    const url = "http://localhost:8082/petclinic/api/pets/types";
-    return this.http.get(url).map(res => res.json());
+    let url = this.appConfig.contextPath + "/api/pets/types";
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
   }
 
   getVets() {
-    this.vetsUrl = "http://localhost:8082/petclinic/api/vets";
-    return this.http.get(this.vetsUrl).map(res => res.json());
+    let url = this.appConfig.contextPath + "/api/vets";
+    let headers = new Headers();
+    this.createAuthorizationTokenHeader(headers);
+    return this.http.get(url, {headers: headers}).map(res => res.json());
   }
 
 }
